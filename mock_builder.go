@@ -30,9 +30,12 @@ func (m *MockHTTPServer) AddResponses(resp []MockResponse) error {
 
 func request2string(req http.Request) (string, error) {
 	addRequestDefaults(&req)
+
+	reqURI := strings.Split(req.URL.RequestURI(), "?")[0]
+
 	fragments := []string{
 		req.Method,
-		req.URL.RequestURI(),
+		reqURI,
 	}
 	if req.Body != nil {
 		if body, err := ioutil.ReadAll(req.Body); err != nil {
