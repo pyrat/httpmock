@@ -1,10 +1,8 @@
 package httpmock
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
-	"sort"
 	"strings"
 )
 
@@ -47,12 +45,12 @@ func request2string(req http.Request) (string, error) {
 		fragments = append(fragments, "")
 	}
 
-	headerStrings := make([]string, 0)
-	for index, values := range req.Header {
-		headerStrings = append(headerStrings, fmt.Sprintf("%s: %s", strings.ToLower(index), strings.Join(values, ",")))
-	}
-	sort.Strings(headerStrings)
-	fragments = append(fragments, headerStrings...)
+	// headerStrings := make([]string, 0)
+	// for index, values := range req.Header {
+	// headerStrings = append(headerStrings, fmt.Sprintf("%s: %s", strings.ToLower(index), strings.Join(values, ",")))
+	// }
+	// sort.Strings(headerStrings)
+	// fragments = append(fragments, headerStrings...)
 
 	return strings.Join(fragments, "|"), nil
 }

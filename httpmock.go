@@ -1,6 +1,7 @@
 package httpmock
 
 import (
+	"fmt"
 	"net"
 	"net/http"
 )
@@ -42,10 +43,12 @@ func NewMockHTTPServer(b ...string) *MockHTTPServer {
 
 func (m *MockHTTPServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	reqString, err := request2string(*req)
+
 	if err != nil {
 		w.WriteHeader(400)
 		w.Write([]byte("invalid request"))
 	} else {
+		fmt.Println("Searching through the response map", reqString)
 		resp, ok := m.ResponseMap[reqString]
 		if ok {
 			if resp.Header != nil {
