@@ -1,7 +1,6 @@
 package httpmock
 
 import (
-	"fmt"
 	"net"
 	"net/http"
 )
