@@ -39,6 +39,7 @@ func request2string(req http.Request) (string, error) {
 	}
 	if req.Body != nil {
 		if body, err := ioutil.ReadAll(req.Body); err != nil {
+			fmt.Println("Error reading the request body. ", err)
 			return "", err
 		} else {
 			fragments = append(fragments, string(body))
